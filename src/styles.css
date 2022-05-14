@@ -1,9 +1,72 @@
-html, body {
+:root{
+    --sidevar-witdh: 20%;
+}
+.wrapper{
+
+    display: flex;
+    flex-direction: column;
+}
+.content{
+   padding-left: var(--sidevar-witdh);
+    margin: 2%;
+}
+.sidebar {
+    position:fixed;
     height: 100%;
+    top: 0px;
+    left: 0px;
+    min-height: 100vh;
+    min-width: var(--sidevar-witdh);
 }
 
-#sidebar {
-    height: 100%;
-    min-height: 100vh;
-    min-width: 180px;
+.show-more-btn{
+    
+    display: inline-block;
+    outline: 0;
+    text-align: center;
+    cursor: pointer;
+    margin: 3%;
+    padding: 17px 40%;
+    border: 0;
+    color: #fff;
+    font-size: 17.5px;
+    border: 2px solid transparent;
+    border-color: #000;
+    color: #000;
+    background: transparent;
+    font-weight: 800;
+    line-height: 30px;
+    transition: .1s ease-in-out;
+    
 }
+
+.show-more-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.gif-shadow{
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px
+}
+.no-results{
+    margin-top: 30vh;
+    font-size: xx-large;
+    justify-content: center;
+
+}
+
+.gifs{
+    max-width: 50%;
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    margin: 2%;
+}
+
+@media screen and (max-width: 1250px) {
+    .sidebar{
+        display: none;
+    }
+    .content{
+        padding-left: 0px;
+    }
+  }

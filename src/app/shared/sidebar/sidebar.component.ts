@@ -14,6 +14,10 @@ export class SidebarComponent implements OnInit {
   search( word: string){
     this.gifService.searchGifs(word);
   }
+  delete(){
+    this.gifService.deleteGifs();
+  }
+
 
 
   ngOnInit(): void {

@@ -1,15 +1,29 @@
-<div class="d-flex">
-    <div class="bg-dark border-right p-3" id="sidebar">
-      <h3 class="text-light">
+
+    <div class="bg-dark border-right p-3 sidebar">
+      <h3 class="text-light text-center">
         GifHouse
       </h3>
       <hr class="text-white"/>
-    <div class="light-group list-reset">
+    <div class="light-group list-reset rounded">
       <a href="#" 
         class="list-group-item list-group-item-action"
         (click)="search(item)"
         *ngFor="let item of history">
         {{item | titlecase}}
+
       </a>
+      <div *ngIf="history.length > 0 else NoHistory" class="show-more-btn-ctn">
+        <a href="#" 
+        class="list-group-item list-group-item-action bg-danger text-white text-center"
+        (click)="delete()">
+        Clear History
+      </a>
+      
+        </div>
+        <ng-template #NoHistory>
+          <p class="text-white text-center">No history to show.</p>
+        </ng-template>
+
+        
     </div>
   </div>

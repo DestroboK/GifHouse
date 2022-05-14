@@ -1,18 +1,28 @@
-<!-- <ul>
-    <li *ngFor="let gif of results">
-        {{gif.title}}
-    </li>
-</ul> -->
 
 <div class="row">
-    <div *ngFor="let gif of results" class="col-md-4 col-sm-6 animate__animated animate__fadeIn">
-            <div class="card">
-                <img [src]="gif.images.downsized_medium.url" [alt]=""/>
-                <div class="card-body">
-                    <p class="card-text">
-                        {{gif.title}}
-                    </p>
-                </div>
-            </div>
+        <div *ngFor="let gif of results" class="col-md-4 col-sm-6 animate__animated animate__fadeIn">    
+            <div class="card gif-shadow">
+                    <img [src]="gif.images.downsized_medium.url" [alt]=""/>
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{gif.title}}
+                        </p>
+                    </div>
+</div>
+</div>
+    <div *ngIf="results.length == 0">
+        <div class="no-results text-center">
+            😦
+            <p>Oops! We couln't find gifs with those words</p>
+        </div>
+    
     </div>
+
+    
+
+    <div *ngIf="limit <=49 && results.length > 0" class="show-more-btn-ctn">
+        <button (click)="addGifs()" class="show-more-btn">View more
+            
+        </button>
+        </div>
 </div>

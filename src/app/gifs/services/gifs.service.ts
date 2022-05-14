@@ -9,7 +9,9 @@ export class GifsService {
   private _apiKey: string = 'kobJNZTxawxQ6h19LCWfpNSmGzY92j8j';
   private serviceUrl: string = 'https://api.giphy.com/v1/gifs'
   private _history: string[] =[];
+  private lastQuery: string = '';
   public results: Gif[] = [];
+  private limit: number = 50;
   get history(){
     return [...this._history]
   }
@@ -17,7 +19,6 @@ export class GifsService {
   constructor(private http: HttpClient){
     this._history = JSON.parse(localStorage.getItem('history')!) || [];
     this.results = JSON.parse(localStorage.getItem('gifs')!) || [];
-
 
   }
   
@@ -29,11 +30,13 @@ export class GifsService {
       localStorage.setItem('history', JSON.stringify(this._history));
     }
 
+
     const params = new HttpParams()
     .set('api_key', this._apiKey)
-    .set('limit', '10')
+    .set('limit', this.limit)
     .set('q', query);
 
+    this.lastQuery = query;
     this.http.get<SearchedGIFResults>(`${this.serviceUrl}/search`, {params : params})
       .subscribe( (response) => {
         this.results = response.data;
@@ -42,6 +45,9 @@ export class GifsService {
       })
     
   }
-
+  deleteGifs(){
+    localStorage.removeItem('history');
+    this._history = JSON.parse(localStorage.getItem('history')!) || [];
+  }
   
 }
